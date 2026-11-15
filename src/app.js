@@ -296,10 +296,23 @@ async function loadSearchComparison(searchId) {
   const response = await fetch(`/api/search/both/${encodeURIComponent(searchId)}`);
   const result = await response.json();
   if (!response.ok) throw new Error(result.error || "Could not load saved comparison.");
-    if (result.wst && !result.wst.error) renderProviderSearch(result.wst, wstResults);
-    else renderProviderError(result.wst?.error || result.wst_error || "No saved results for this search.", wstResults, "WST");
-    if (result.wsex && !result.wsex.error) renderProviderSearch(result.wsex, wsexResults);
-    else renderProviderError(result.wsex?.error || result.wsex_error || "No saved results for this search.", wsexResults, "WSex");
+  const wstMissing = result.wst_error === "Saved WST search was not found.";
+  const wsexMissing = result.wsex_error === "Saved WSex search was not found.";
+  if (result.wst && !result.wst.error) renderProviderSearch(result.wst, wstResults);
+  else if (wstMissing) renderProviderNotice("No Tavily result was saved for this comparison yet.", wstResults);
+  else renderProviderError(result.wst?.error || result.wst_error || "No saved results for this search.", wstResults, "WST");
+  if (result.wsex && !result.wsex.error) renderProviderSearch(result.wsex, wsexResults);
+  else if (wsexMissing) renderProviderNotice("No Exa result was saved for this earlier WST search. Choose either Explore button on a recording to run both providers.", wsexResults);
+  else renderProviderError(result.wsex?.error || result.wsex_error || "No saved results for this search.", wsexResults, "WSex");
+  if (wsexMissing) wstStatus.textContent = "Showing an earlier WST-only search. Start a new comparison to add Exa results.";
+}
+
+function renderProviderNotice(message, container) {
+  container.replaceChildren();
+  const notice = document.createElement("p");
+  notice.className = "provider-notice";
+  notice.textContent = message;
+  container.append(notice);
 }
 
 async function loadSearchContext() {
