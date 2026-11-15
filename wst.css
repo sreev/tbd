@@ -1,0 +1,46 @@
+.file-note{font-size:10px;color:#789084;margin:0 0 8px}
+.wst-panel{padding:24px;margin:4px 0 32px;background:linear-gradient(145deg,#fff 0%,#fbfdfb 100%)}
+.wst-heading{margin-bottom:7px}
+.wst-intro{font-size:12px;color:#64766d;line-height:1.65;max-width:570px;margin:10px 0 14px}
+.wst-status{font-size:11px;color:#4d765f;background:#eff7f1;border-radius:8px;padding:9px 11px;margin-bottom:8px}
+.wst-context{font-size:10px;color:#8a9890;margin:0 0 15px}
+.wst-layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:16px;align-items:start}
+.wst-history{display:grid;gap:7px;max-height:450px;overflow:auto}
+.wst-history-item{text-align:left;padding:10px;border:1px solid #e8eee9;background:#fff;border-radius:9px;cursor:pointer}
+.wst-history-item:hover{border-color:#8ab49b}
+.wst-history-item strong,.wst-history-item span{display:block}
+.wst-history-item strong{font-size:10px;line-height:1.45;color:#314e3d}
+.wst-history-item span{font-size:9px;color:#8a9890;margin-top:6px}
+.wst-results{min-width:0}
+.wst-query-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.wst-query-row h3{font:700 16px Manrope,sans-serif;line-height:1.45;color:#20392d;margin:0}
+.wst-query-row time{font-size:9px;color:#97a39c;white-space:nowrap;padding-top:4px}
+.wst-answer{padding:14px 15px;border-radius:11px;background:#f0f6f1;border:1px solid #e1ebe3;margin-bottom:16px}
+.wst-answer span{font-size:9px;font-weight:700;letter-spacing:.11em;color:#4f8061}
+.wst-answer p{font-size:12px;line-height:1.7;color:#415b4b;margin:7px 0 0;white-space:pre-wrap}
+.wst-subhead{font:700 11px Manrope,sans-serif;color:#536b5c;margin:16px 0 9px}
+.wst-images{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.wst-image-card{overflow:hidden;border-radius:9px;border:1px solid #e7ece8;background:#fff;text-decoration:none;color:#53685c}
+.wst-image-card img{display:block;width:100%;height:90px;object-fit:cover;background:#edf1ed}
+.wst-image-card span{display:block;font-size:9px;line-height:1.4;padding:7px 8px;max-height:42px;overflow:hidden}
+.wst-sources{display:grid;gap:8px}
+.wst-source-card{padding:11px 12px;border:1px solid #e9eee9;background:#fff;border-radius:9px}
+.wst-source-card>a{font-size:11px;font-weight:700;color:#265a40;text-decoration:none}
+.wst-source-card>a:hover{text-decoration:underline}
+.wst-source-card p{font-size:10px;color:#66786e;line-height:1.55;margin:6px 0}
+.wst-source-card>span{font-size:9px;color:#9aa59e}
+.provider-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.provider-pane{min-width:0;border:1px solid #e7ede8;border-radius:12px;background:rgba(255,255,255,.78);padding:13px}
+.provider-pane-heading{display:flex;align-items:center;gap:9px;padding-bottom:11px;border-bottom:1px solid #edf1ed;margin-bottom:10px}
+.provider-pane-heading strong,.provider-pane-heading small{display:block}
+.provider-pane-heading strong{font:700 12px Manrope,sans-serif;color:#233c2f}
+.provider-pane-heading small{font-size:9px;color:#89988f;margin-top:2px}
+.provider-mark{width:27px;height:27px;border-radius:8px;display:grid;place-items:center;font:700 12px Manrope,sans-serif}
+.tavily-mark{background:#eaf4ec;color:#267247}.exa-mark{background:#eef0ff;color:#4c5eb0}
+.provider-error{padding:13px;border-radius:9px;color:#9b4f42;background:#fcf1ed;border:1px solid #f1ddd7;font-size:11px;line-height:1.6}
+.provider-pane .wst-query-row{display:block}.provider-pane .wst-query-row h3{font-size:13px}.provider-pane .wst-query-row time{display:block;padding-top:4px}
+.provider-pane .wst-answer{padding:11px;margin-bottom:12px}.provider-pane .wst-answer p{font-size:11px}
+.provider-pane .wst-images{grid-template-columns:repeat(2,minmax(0,1fr))}.provider-pane .wst-image-card img{height:75px}
+.provider-pane .wst-subhead{margin-top:13px}.provider-pane .wst-source-card{padding:9px}.provider-pane .wst-source-card>a{font-size:10px}.provider-pane .wst-source-card p{font-size:9px}
+@media(max-width:900px){.wst-layout{grid-template-columns:150px minmax(0,1fr)}.provider-comparison{grid-template-columns:1fr}}
+@media(max-width:620px){.wst-panel{padding:17px}.wst-layout{grid-template-columns:1fr}.wst-history{grid-template-columns:repeat(2,minmax(0,1fr));max-height:170px}.wst-images{grid-template-columns:repeat(2,minmax(0,1fr))}.wst-query-row{flex-direction:column;gap:4px}}

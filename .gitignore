@@ -1,0 +1,9 @@
+.venv/
+.build/
+.env
+__pycache__/
+*.py[cod]
+/recordings/*
+!/recordings/.gitkeep
+/wst/data/
+/wsex/data/

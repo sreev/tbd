@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "skills": {
+    "tavily-competitor-analysis": {
+      "source": "tavily-ai/official-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/tavily-competitor-analysis/SKILL.md",
+      "computedHash": "ce0c4dba8c8b93059880d53fafde04fe2a4e359c706bfcd68c41790090d12189"
+    },
+    "tavily-due-diligence": {
+      "source": "tavily-ai/official-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/tavily-due-diligence/SKILL.md",
+      "computedHash": "e3e3eeb10ab468b5415b55078aadd796078a9611d51da4068b96a3a087bc84a9"
+    },
+    "tavily-lead-gen": {
+      "source": "tavily-ai/official-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/tavily-lead-gen/SKILL.md",
+      "computedHash": "a5ffc9b8a7c723dd4d709197a9636d4a3e909a63e36a24e9976b909cd299ee0a"
+    },
+    "tavily-literature-review": {
+      "source": "tavily-ai/official-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/tavily-literature-review/SKILL.md",
+      "computedHash": "da144829fe0e67aded7ddc1caf2977bad1ef6585b468f85476ec5a44ca56624f"
+    },
+    "tavily-market-research": {
+      "source": "tavily-ai/official-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/tavily-market-research/SKILL.md",
+      "computedHash": "20026c92d83cf5bc24f85390fe0891655ba9fb5f62074e3f3acf8f95a91ccca7"
+    },
+    "tavily-meeting-prep": {
+      "source": "tavily-ai/official-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/tavily-meeting-prep/SKILL.md",
+      "computedHash": "048ad92a0c9a9c3b7dd449a843accbb33f09f476b5c1de4687f137d572583395"
+    }
+  }
+}

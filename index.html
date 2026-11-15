@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f4">
+  <title>Spch2Txt — speech to text</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="wst.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Spch2Txt home"><span class="brand-mark">S</span> Spch2Txt</a>
+      <span class="local-badge"><span></span> Saved on this device</span>
+    </header>
+    <section class="hero">
+      <p class="eyebrow">VOICE NOTES, READY AS TEXT</p>
+      <h1>Say it. <span>Keep it.</span></h1>
+      <p class="intro">Record a thought, save audio and text together, then explore related sources and images with WST.</p>
+    </section>
+    <section class="recorder panel" aria-labelledby="recorder-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">NEW RECORDING</p><h2 id="recorder-title">Your microphone</h2></div>
+        <label class="language-label" for="language">Language
+          <select id="language"><option value="en-US">English (US)</option><option value="en-GB">English (UK)</option><option value="es-ES">Español</option><option value="fr-FR">Français</option><option value="de-DE">Deutsch</option><option value="hi-IN">हिन्दी</option></select>
+        </label>
+      </div>
+      <div class="record-area">
+        <div class="mic-orb" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"></path></svg></div>
+        <p id="status" data-state="ready" role="status" aria-live="polite">Ready when you are.</p>
+        <div class="controls"><button id="start" class="primary"><span class="record-dot"></span> Start recording</button><button id="stop" class="stop-button" disabled>Stop &amp; save</button></div>
+        <p class="privacy-note">After you stop, the recording is sent to Cartesia for transcription and saved in this browser.</p>
+      </div>
+      <div class="transcript-wrap"><div class="transcript-label"><span>TRANSCRIPT</span><span class="live-indicator"><i></i> CARTESIA</span></div><p id="transcript" class="transcript" aria-live="polite">Your transcript will appear here after you save a recording.</p></div>
+    </section>
+    <section class="saved-section">
+      <div class="section-heading saved-heading"><div><p class="eyebrow">YOUR LIBRARY</p><h2>Saved recordings</h2></div><span class="storage-label">Stored locally</span></div>
+      <div id="recordings" class="recordings"><p class="empty">Loading your recordings…</p></div>
+    </section>
+    <section id="wst-panel" class="wst-panel panel" aria-labelledby="wst-title">
+      <div class="section-heading wst-heading">
+        <div><p class="eyebrow">SEARCH AGENTS · WST + WSex</p><h2 id="wst-title">Compare the wider context</h2></div>
+        <span class="storage-label">Tavily + Exa</span>
+      </div>
+      <p class="wst-intro">Choose either <strong>Explore with WST</strong> or <strong>Explore with WSex</strong>. Both agents read the same saved transcript and search in parallel; results appear side by side. Transcript text is sent to Tavily and Exa only when you start a search.</p>
+      <div id="wst-status" class="wst-status" role="status" aria-live="polite">Ready for a transcript.</div>
+      <div id="wst-context" class="wst-context">Loading saved context…</div>
+      <div class="wst-layout">
+        <aside id="wst-history" class="wst-history" aria-label="Saved WST searches"></aside>
+        <div class="provider-comparison">
+          <section class="provider-pane" aria-label="WST Tavily results">
+            <div class="provider-pane-heading"><span class="provider-mark tavily-mark">T</span><div><strong>WST</strong><small>Tavily search</small></div></div>
+            <div id="wst-results" class="wst-results"><p class="empty">WST results will appear here.</p></div>
+          </section>
+          <section class="provider-pane" aria-label="WSex Exa results">
+            <div class="provider-pane-heading"><span class="provider-mark exa-mark">E</span><div><strong>WSex</strong><small>Exa search</small></div></div>
+            <div id="wsex-results" class="wst-results"><p class="empty">WSex results will appear here.</p></div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <footer>Spch2Txt <span>•</span> Audio and transcript are saved to recordings/. Audio is sent to Cartesia; transcript text is sent to Tavily only when you choose WST search.</footer>
+  </main>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
