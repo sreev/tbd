@@ -4,11 +4,11 @@ import json
 import os
 import re
 import threading
-import urllib.error
-import urllib.request
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
+
+from exa_py import Exa
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -81,43 +81,38 @@ class WSexAgent:
         api_key = os.environ.get("EXA_API_KEY", "").strip()
         if not api_key:
             raise RuntimeError("EXA_API_KEY is not set in the server environment.")
-        payload = json.dumps({
-            "query": query,
-            "type": "auto",
-            "numResults": 8,
-            "contents": {"highlights": True},
-        }).encode("utf-8")
-        request = urllib.request.Request(
-            "https://api.exa.ai/search",
-            data=payload,
-            headers={"x-api-key": api_key, "Content-Type": "application/json"},
-            method="POST",
-        )
         try:
-            with urllib.request.urlopen(request, timeout=60) as response:
-                response_data = json.loads(response.read().decode("utf-8"))
-        except urllib.error.HTTPError as error:
-            detail = error.read().decode("utf-8", errors="replace")
-            raise RuntimeError(f"Exa returned HTTP {error.code}: {detail[:500]}") from error
-        except urllib.error.URLError as error:
-            raise RuntimeError(f"Could not reach Exa: {error.reason}") from error
+            exa = Exa()
+            response_data = exa.search(query, contents={"highlights": True})
+        except Exception as error:
+            detail = str(error)
+            if "NO_MORE_CREDITS" in detail or "status code 402" in detail:
+                raise RuntimeError("Exa has no remaining API credits. Add credits to the Exa account, then retry the search.") from error
+            raise RuntimeError(f"Exa search failed: {detail}") from error
 
         search_id = self._valid_id(comparison_id) if comparison_id else str(uuid.uuid4())
         results = []
         images = []
-        for item in response_data.get("results", [])[:8]:
-            highlights = item.get("highlights") or []
+        for item in getattr(response_data, "results", []) or []:
+            highlights = getattr(item, "highlights", None) or []
+            if isinstance(highlights, str):
+                highlights = [highlights]
+            title = getattr(item, "title", "") or ""
+            url = getattr(item, "url", "") or ""
+            summary = getattr(item, "summary", "") or ""
+            text_content = getattr(item, "text", "") or ""
             results.append({
-                "title": item.get("title", ""),
-                "url": item.get("url", ""),
-                "content": "\n".join(highlights) if highlights else item.get("summary", "") or item.get("text", "")[:900],
-                "score": item.get("score"),
-                "published_date": item.get("publishedDate"),
-                "favicon": item.get("favicon"),
-                "author": item.get("author"),
+                "title": title,
+                "url": url,
+                "content": "\n".join(str(value) for value in highlights) if highlights else (summary or text_content[:900]),
+                "score": getattr(item, "score", None),
+                "published_date": getattr(item, "published_date", None),
+                "favicon": getattr(item, "favicon", None),
+                "author": getattr(item, "author", None),
             })
-            if item.get("image"):
-                images.append({"url": item["image"], "description": item.get("title", "")})
+            image = getattr(item, "image", None)
+            if image:
+                images.append({"url": image, "description": title})
 
         result = {
             "id": search_id,
@@ -127,8 +122,8 @@ class WSexAgent:
             "transcript_file": transcript_path.name,
             "query": query,
             "created_at": _now(),
-            "request_id": response_data.get("requestId"),
-            "answer": response_data.get("output", {}).get("content", "") if isinstance(response_data.get("output"), dict) else "",
+            "request_id": getattr(response_data, "request_id", None),
+            "answer": getattr(response_data, "answer", "") or "",
             "results": results,
             "images": images,
         }

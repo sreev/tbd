@@ -9,13 +9,14 @@ Microphone access requires localhost or HTTPS. From the repository root, start a
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
+pip install -r requirements.txt
 export CARTESIA_API_KEY="your-cartesia-api-key"
 export TAVILY_API_KEY="your-tavily-api-key"
 export EXA_API_KEY="your-exa-api-key"
 python server.py
 ```
 
-Set `CARTESIA_API_KEY` in the environment before starting the server. The server uses only Python's standard library; no Python packages need to be installed. Keep the API key on the server and do not put it in browser code. `.env` files are ignored by Git if you choose to load the key through a local environment tool.
+Set `CARTESIA_API_KEY`, `TAVILY_API_KEY`, and `EXA_API_KEY` in the environment before starting the server. The Exa agent uses the official `exa-py` SDK from `requirements.txt`. Keep API keys on the server and do not put them in browser code. `.env` files are ignored by Git if you choose to load the keys through a local environment tool.
 
 Open <http://localhost:8000> in Chrome or Edge, allow microphone access, choose a language, and press **Start recording**. Press **Stop & save** when you finish. The audio is saved locally, sent to Cartesia, and the returned transcript is saved alongside it. `.gitignore` excludes recording files and both agents' search data because they can contain personal speech and transcript content.
 

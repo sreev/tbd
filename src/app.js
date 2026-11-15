@@ -329,7 +329,7 @@ async function loadSearchContext() {
       byId.set(entry.id, current);
     }
     const history = [...byId.values()].sort((a, b) => b.created_at.localeCompare(a.created_at));
-    const readyProviders = [context.providers?.wst ? "Tavily ready" : "Tavily key missing", context.providers?.wsex ? "Exa ready" : "Exa key missing"];
+    const readyProviders = [context.providers?.wst ? "Tavily key configured" : "Tavily key missing", context.providers?.wsex ? "Exa key configured" : "Exa key missing"];
     wstContext.textContent = `${history.length} saved comparison${history.length === 1 ? "" : "s"} · ${readyProviders.join(" · ")} · Context saved locally`;
     wstHistory.replaceChildren();
     for (const item of history) {

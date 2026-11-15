@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f7f4">
+  <meta name="theme-color" content="#eaf3ff">
   <title>Spch2Txt — speech to text</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="wst.css">
+  <link rel="stylesheet" href="theme.css">
 </head>
 <body>
   <main class="shell">
@@ -17,8 +18,10 @@
     <section class="hero">
       <p class="eyebrow">VOICE NOTES, READY AS TEXT</p>
       <h1>Say it. <span>Keep it.</span></h1>
-      <p class="intro">Record a thought, save audio and text together, then explore related sources and images with WST.</p>
+      <p class="intro">Record a thought, save audio and text together, then compare related sources from WST and WSex.</p>
     </section>
+    <div class="workspace">
+    <div class="workspace-primary">
     <section class="recorder panel" aria-labelledby="recorder-title">
       <div class="section-heading">
         <div><p class="eyebrow">NEW RECORDING</p><h2 id="recorder-title">Your microphone</h2></div>
@@ -38,6 +41,7 @@
       <div class="section-heading saved-heading"><div><p class="eyebrow">YOUR LIBRARY</p><h2>Saved recordings</h2></div><span class="storage-label">Stored locally</span></div>
       <div id="recordings" class="recordings"><p class="empty">Loading your recordings…</p></div>
     </section>
+    </div>
     <section id="wst-panel" class="wst-panel panel" aria-labelledby="wst-title">
       <div class="section-heading wst-heading">
         <div><p class="eyebrow">SEARCH AGENTS · WST + WSex</p><h2 id="wst-title">Compare the wider context</h2></div>
@@ -60,7 +64,8 @@
         </div>
       </div>
     </section>
-    <footer>Spch2Txt <span>•</span> Audio and transcript are saved to recordings/. Audio is sent to Cartesia; transcript text is sent to Tavily only when you choose WST search.</footer>
+    </div>
+    <footer>Spch2Txt <span>•</span> Audio and transcript are saved to recordings/. Audio is sent to Cartesia; transcript text is sent to Tavily and Exa when you start either search.</footer>
   </main>
   <script type="module" src="src/app.js"></script>
 </body>
